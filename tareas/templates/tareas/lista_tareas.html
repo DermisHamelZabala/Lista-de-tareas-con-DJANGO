@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TO-DO</title>
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        {{ formulario.as_p }}
+        <button type="submit">Agregar</button>
+    </form>
+    {% for tarea in tareas %}
+        <h2>{{ tarea.titulo }}</h2>
+        {% if tarea.estado %}
+            <p>Completa</p>
+        {% else %}
+            <p>Incompleta</p>
+        {% endif %}
+        
+        <small>{{ tarea.fecha_creacion|date:"d/m/Y" }}</small>
+    {% endfor %}
+</body>
+</html>
