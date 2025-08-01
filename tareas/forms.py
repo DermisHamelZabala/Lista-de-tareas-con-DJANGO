@@ -9,4 +9,5 @@ class TareaForm(forms.ModelForm):
         model = Tarea
         fields = [
             'titulo',
+            'descripcion',
         ]

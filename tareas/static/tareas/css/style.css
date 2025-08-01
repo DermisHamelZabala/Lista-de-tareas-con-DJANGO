@@ -1,0 +1,459 @@
+*{
+    margin: 0;
+}
+
+:root{
+    --color-primario: #4D88FF;         /* Azul claro para botones y enlaces activos */
+    --color-acento: #80B3FF;           /* Azul más claro para hover o resaltes */
+    --color-texto: #EAEAEA;            /* Gris claro para texto principal */
+    --color-texto-secundario: #B0B0B0; /* Gris medio para metadatos, fechas */
+    --color-bordes: #2E2E2E;           /* Gris oscuro para bordes sutiles */
+    --color-superficie: #1E1E1E;       /* Fondo de tarjetas o contenedores */
+    --color-fondo: #121212;            /* Fondo principal de la aplicación */
+    /* === Tipografía (la mantenemos) === */
+    --fuente-principal: 'Inter', sans-serif;
+    --fuente-encabezados: 'Merriweather', serif;
+}
+
+html{
+    font-size: 16px;
+    scroll-behavior: smooth; /* para que el scroll en la pagina sea suave */
+}
+
+body{
+    font-family: var(--fuente-principal);
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    line-height: 1.6;
+}
+
+h1, h2, h3{
+    font-family: var(--fuente-encabezados);
+    color: var(--color-primario);
+    margin-bottom: 0.75rem;
+}
+
+
+/* que el footer siempre aparezca abajo */
+html, body{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.pagina{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main{
+    flex: 1;
+}
+
+/* estilo barra navegacion */
+
+.contenedor-cabecera{
+    background-color: var(--color-superficie);
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.05);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.barra-de-navegacion{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+
+.barra-de-navegacion img{
+    width: 400px;
+}
+
+.opciones-derecha{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.buscador{
+    display: flex;
+    flex-direction: row;
+}
+
+.buscador input{
+    padding: 8px;
+    border-radius: 8px 0 0 8px;
+    border: 1.5px solid var(--color-bordes);
+    width: 270px;
+}
+
+.btn-buscar{
+    background-color: var(--color-primario);
+    border-radius: 0 8px 8px 0;
+    padding: 9px;
+    height: 35px;
+    width: 33px;
+    cursor: pointer;
+    border: 1px solid var(--color-bordes);
+}
+
+.buscador img{
+    width: 14px
+}
+
+.crear-tarea{
+    text-decoration: none;
+    background-color: var(--color-primario);
+    color: var(--color-texto);
+    padding: 7px;
+    border-radius: 8px;
+}
+
+.crear-tarea:hover{
+    background-color: var(--color-acento);
+    transition: background-color 0.3s ease;
+}
+
+.elementos-responsivos{
+    display: none;
+}
+
+/* fin estilo barra navegacion */
+
+
+/* estilo del contenido principal */
+
+.contenido-principal{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* estilo formulario */
+.formulario-agregar-tarea{
+    background-color: var(--color-superficie);
+    padding: 40px;
+    border-radius: 10px;
+    transition: box-shadow 0.3s ease;
+    margin-top: 150px;
+    margin-bottom: 30px;
+}
+
+.formulario-agregar-tarea:hover{
+    box-shadow: 0 0 4px var(--color-texto-secundario);
+}
+
+.formulario-agregar-tarea h2{
+    text-align: center;
+    color: var(--color-texto);
+}
+
+form p{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+form input{
+    padding: 9px;
+    border-radius: 8px;
+    border: 2px solid var(--color-bordes);
+    transition: box-shadow 0.3s ease;
+}
+
+form textarea{
+    padding: 9px;
+    border-radius: 8px;
+    border: 2px solid var(--color-bordes);
+    transition: box-shadow 0.3s ease;
+    resize: vertical;
+}
+
+form input:hover,
+form textarea:hover{    
+    box-shadow: 0 0 4px var(--color-acento);
+}
+
+form .btn-agregar{
+    display: block;
+    margin: 25px auto 0 auto;
+    padding: 9px;
+    font-size: 16px;
+    font-family: var(--fuente-principal);
+    background-color: var(--color-acento);
+    color: white;
+    border-radius: 8px;
+    border: 2px solid var(--color-bordes);
+    transition: background-color 0.5s ease;
+}
+
+form button:hover{
+    cursor: pointer;
+    background-color: var(--color-primario);
+}
+
+/* estilos de las tareas */
+.encabezado-tarea{
+    color: var(--color-texto);
+    margin-top: 150px;
+}
+
+.tareas{
+    margin: 20px;
+    background-color: var(--color-superficie);
+    padding: 30px;
+    width: 80%;
+    border-radius: 8px;
+    box-sizing: border-box;
+    /* overflow-wrap: break-word;
+    word-break: break-all; */
+
+}
+
+.tareas:hover{
+    transform: translateY(-3px);
+    box-shadow: 3px 3px 5px rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.titulos-tareas{
+    font-size: 20px;
+    width: 80%;
+}
+
+.titulo-checkboxes{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.checkboxes{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.checkboxes input{
+    height: 15px;
+    width: 15px;
+}
+
+.checkboxes p{
+    padding: 5px;
+    background-color: var(--color-primario);
+    border-radius: 10px;
+    width: 100px;
+    text-align: center;
+}
+
+.descripcion-tarea{
+    margin: 10px 0;
+    text-align: justify;
+}
+
+.enlaces-actualizar-eliminar{
+    display: flex;
+    margin-top: 10px;
+    gap: 10px;
+}
+
+.actualizar-eliminar{
+    text-decoration: none;
+    color: var(--color-texto);
+    background-color: var(--color-acento);
+    padding: 3px;
+    border-radius: 8px;
+}
+
+.actualizar-eliminar:hover{
+    background-color: #4D88FF;
+    transition: background-color 0.3s ease;
+}
+
+/* fin del estilo del contenido principal */
+
+/* TODO */
+/* estilo borrar tarea*/
+.eliminar-tarea{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #121212e5;
+    min-height: 100vh;
+    min-width: 100%;
+    z-index: 1001;
+}
+
+.mensaje-eliminar{
+    color: var(--color-texto);
+}
+
+.formulario-eliminar{
+    background-color: var(--color-superficie);
+    padding: 40px;
+    border-radius: 8px;
+    width: 30%;
+}
+
+.btn-eliminar{
+    margin: 0 auto;
+    display: inline;
+}
+
+form a{
+    text-decoration: none;
+    color: var(--color-texto);
+}
+
+/* estilo footer */
+footer{
+    background-color: var(--color-superficie);
+    padding: 40px;
+}
+
+footer p{
+    text-align: center;
+}
+
+/* estilo responsivo */
+@media (max-width: 870px){
+    .titulos-tareas{
+        font-size: 18px;
+    }
+
+    .barra-de-navegacion{
+        display: none;
+    }
+    .elementos-responsivos{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        padding: 10px 0px;
+    }
+
+    .elementos-superiores{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        margin-right: 40px;
+        gap: 10px;
+    }
+
+    .elementos-responsivos .a-logo{
+        width: 50%;
+    }
+
+    .elementos-superiores img{
+        width: 100%;
+    }
+
+    .elementos-responsivos .crear-tarea{
+        text-align: center;
+        font-size: 15px;
+        width: 15%;
+    }
+
+    .buscador{
+        width: 70%;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+
+    .encabezado-tarea,
+    .formulario-agregar-tarea{
+        margin-top: 200px;
+    }
+
+    .tareas{
+        width: 95%;
+    } 
+
+    .descripcion-tarea{
+        line-height: 1.4;
+    }
+}
+
+@media (max-width: 620px){
+    .encabezado-tarea,
+    .formulario-agregar-tarea{
+        margin-top: 170px;
+    }
+
+    .titulo-checkboxes{
+        gap: 10px;
+    }
+
+    .tareas{
+        margin: 10px;
+        padding: 15px;
+    }
+
+    .formulario-eliminar{
+        width: 70%;
+    }
+}
+
+@media (max-width: 555px){
+    .elementos-responsivos .crear-tarea{
+        font-size: 12px;
+        width: 15%;
+    }
+
+    .encabezado-tarea,
+    .formulario-agregar-tarea{
+        margin-top: 160px;
+    }
+
+    .buscador{
+        width: 50%;
+    }
+
+    .elementos-superiores{
+        margin-right: 20px;
+    }
+
+    .descripcion-tarea{
+        font-size: 14px;
+    }
+
+    .formulario-agregar-tarea{
+        padding: 30px;
+        width: 75%;   
+    }
+    .formulario-agregar-tarea h2{
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 445px){
+    /* .titulo-checkboxes{
+        display: inline-block;
+        flex-direction: column;
+        width: 100%;
+        justify-content: start;
+    }
+
+    .titulos-tareas{
+        width: 100%;
+    } */
+
+    .encabezado-tarea,
+    .formulario-agregar-tarea{
+        margin-top: 140px;
+    }
+
+    .elementos-responsivos .crear-tarea{
+        font-size: 12px;
+        width: 20%;
+    }
+}

@@ -1,25 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TO-DO</title>
-</head>
-<body>
-    <form method="POST">
-        {% csrf_token %}
-        {{ formulario.as_p }}
-        <button type="submit">Agregar</button>
-    </form>
-    {% for tarea in tareas %}
-        <h2>{{ tarea.titulo }}</h2>
-        {% if tarea.estado %}
-            <p>Completa</p>
-        {% else %}
-            <p>Incompleta</p>
-        {% endif %}
-        
-        <small>{{ tarea.fecha_creacion|date:"d/m/Y" }}</small>
+{% extends 'tareas/base.html' %}
+
+{% block contenido %}
+    <h2 class="encabezado-tarea">Todas las tareas</h2>
+    {% for tarea in tareas %}    
+        <article class="tareas">     
+            <div class="titulo-checkboxes">
+                <h3 class="titulos-tareas">{{ tarea.titulo }}</h3>
+                <div class="checkboxes">
+                    <form action="{% url 'toogle_estado_tarea' tarea.pk %}" method="POST">
+                        {% csrf_token %}
+                        <input type="checkbox" name="estado" onchange="this.form.submit()" {% if tarea.estado %} checked {% endif %}>
+                    </form>            
+                    {% if tarea.estado %}
+                        <p>Completa</p>
+                    {% else %}
+                        <p>Incompleta</p>
+                    {% endif %}
+                </div>
+            </div>
+            <p class="descripcion-tarea"><strong>Descripcion: </strong>{{ tarea.descripcion }}</p>
+            
+            <small>Creada: {{ tarea.fecha_creacion|date:"d/m/Y" }}</small>
+            <div class="enlaces-actualizar-eliminar">
+                <a href="{% url 'actualizar_tareas' tarea.pk %}" class="actualizar-eliminar">Actualizar</a>
+                <a href="{% url 'borrar_tarea' tarea.pk %}" class="actualizar-eliminar">Borrar</a>
+            </div>
+            
+        </article>
+        {% empty %}
+            <article class="tareas" style="text-align: center;">
+                <p>Aun no hay tareas disponibles.</p>                
+            </article>
     {% endfor %}
-</body>
-</html>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block titulo%}TO-DO{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'tareas/css/style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Montserrat:ital,wght@0,700;1,700&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="pagina">
+        <header class="contenedor-cabecera">
+            <nav class="barra-de-navegacion">
+                <a href="{% url 'lista_tareas' %}"><img src="{% static 'tareas/img/logo.png' %}" alt="logo hamel"></a>
+                <nav class="opciones-derecha">
+                    <a href="{% url 'crear_tarea' %}" class="crear-tarea">Crear Tarea</a>
+                    <form class="buscador" method="GET">
+                        <input type="search" name="buscador" placeholder="Buscar por titulo, completas e incompletas...">
+                        <button type="submit" class="btn-buscar">
+                            <img src="{% static 'tareas/img/btn-buscador.png' %}" alt="boton buscar">
+                            <!-- <i class="bi bi-search"></i> -->
+                        </button>
+                    </form>
+                </nav>
+            </nav>
+            <nav class="elementos-responsivos">
+                <div class="elementos-superiores">
+                    <a href="{% url 'lista_tareas' %}" class="a-logo"><img src="{% static 'tareas/img/logo.png' %}" alt="logo hamel"></a>
+                    <a href="{% url 'crear_tarea' %}" class="crear-tarea">Crear Tarea</a>                      
+                </div>
+                <form class="buscador" method="GET">
+                    <input type="search" name="buscador" placeholder="Buscar por titulo, completas e incompletas...">
+                    <button type="submit">
+                        <img src="{% static 'tareas/img/btn-buscador.png' %}" alt="boton buscar">
+                    </button>
+                </form>
+            </nav>
+        </header>
+        <main>
+            <div class="contenido-principal">
+                {% block contenido %}
+                {% endblock %}   
+            </div>
+        </main>
+        {% block footer %}
+            <footer>
+                <p>&copy; Todos los derechos reservados 2025.</p>
+            </footer>
+        {% endblock %}
+    </div>
+</body>
+</html>

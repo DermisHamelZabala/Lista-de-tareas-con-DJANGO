@@ -1,0 +1,16 @@
+{% extends 'tareas/base.html' %}
+
+{% block titulo %}ELIMINAR TAREA{% endblock %}
+
+{% block contenido %}
+    <div class="eliminar-tarea">
+        <form method="POST" class="formulario-eliminar">
+            {% csrf_token %}
+            <h3 class="mensaje-eliminar">¿Seguro que desea eliminar "{{ tarea.titulo }}"?</h3>
+            <button type="submit" class="btn-eliminar">Eliminar</button>
+            <button class="btn-eliminar"><a href="{% url 'lista_tareas' %}">Cancelar</a></button>
+        </form>
+    </div>
+    <!-- ocultado el footer -->
+    {% block footer %}{% endblock %}
+{% endblock %}

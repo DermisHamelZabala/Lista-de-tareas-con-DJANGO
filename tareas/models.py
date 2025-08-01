@@ -4,7 +4,9 @@ from django.db import models
 
 class Tarea(models.Model):
     # campo titulo para almacenar el titulo de la tarea
-    titulo = models.CharField(max_length=200)
+    titulo = models.CharField(max_length=35)
+    # para describir la tarea
+    descripcion = models.TextField(null=False, blank=False)
     # campo estado para guardar el estado (no completa, completa) de la tarea
     estado = models.BooleanField(default=False)
     # campo fecha de creacion para guarda la fecha en la que se creo la tarea

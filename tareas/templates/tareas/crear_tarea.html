@@ -1,0 +1,14 @@
+{% extends 'tareas/base.html' %}
+
+{% block titulo%}Creacion de tarea{% endblock %}
+
+{% block contenido %}
+    <div class="formulario-agregar-tarea">
+        <h2>Agrega una nueva tarea</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {{ formulario.as_p }}
+            <button type="submit" class="btn-agregar">Agregar</button>
+        </form>
+    </div>
+{% endblock%}
