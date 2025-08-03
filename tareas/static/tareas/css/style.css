@@ -123,6 +123,22 @@ main{
     display: none;
 }
 
+.contenedor-logo-inicio{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.contenedor-logo-inicio a{
+    display: flex;
+    justify-content: center;
+}
+
+.logo-inicio{
+    width: 80%;
+}
+
 /* fin estilo barra navegacion */
 
 
@@ -196,6 +212,15 @@ form .btn-agregar{
 form button:hover{
     cursor: pointer;
     background-color: var(--color-primario);
+}
+
+.registro{
+    width: 30%;
+}
+
+.registro span,
+.registro ul{
+    display: none;
 }
 
 /* estilos de las tareas */
@@ -303,8 +328,18 @@ form button:hover{
 }
 
 .btn-eliminar{
+    padding: 10px;
+    color: white;
+    background-color: var(--color-acento);
+    border-radius: 8px;
+    border: 1px solid var(--color-bordes);
     margin: 0 auto;
     display: inline;
+}
+
+.btn-eliminar:hover{
+    background-color: #4D88FF;
+    transition: background-color 0.3s ease;
 }
 
 form a{
@@ -381,6 +416,10 @@ footer p{
     .descripcion-tarea{
         line-height: 1.4;
     }
+
+    .registro{
+        width: 50%;
+    }
 }
 
 @media (max-width: 620px){
@@ -399,6 +438,10 @@ footer p{
     }
 
     .formulario-eliminar{
+        width: 70%;
+    }
+
+    .registro{
         width: 70%;
     }
 }

@@ -12,33 +12,45 @@
 </head>
 <body>
     <div class="pagina">
+        {% block cabecera %}
         <header class="contenedor-cabecera">
             <nav class="barra-de-navegacion">
-                <a href="{% url 'lista_tareas' %}"><img src="{% static 'tareas/img/logo.png' %}" alt="logo hamel"></a>
-                <nav class="opciones-derecha">
-                    <a href="{% url 'crear_tarea' %}" class="crear-tarea">Crear Tarea</a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'lista_tareas' %}"><img src="{% static 'tareas/img/logo.png' %}" alt="logo hamel"></a>
+                    <nav class="opciones-derecha">
+                        <a href="{% url 'crear_tarea' %}" class="crear-tarea">Crear Tarea</a>
+                        <form class="buscador" method="GET">
+                            <input type="search" name="buscador" placeholder="Buscar por titulo, completas e incompletas...">
+                            <button type="submit" class="btn-buscar">
+                                <img src="{% static 'tareas/img/btn-buscador.png' %}" alt="boton buscar">
+                                <!-- <i class="bi bi-search"></i> -->
+                            </button>
+                        </form>
+                    </nav>
+                {% else %}
+                    <a href="#" class="logo-inicio"><img src="{% static 'tareas/img/logo.png' %}" alt="logo hamel"></a>
+                {% endif %}
+            </nav>
+            <nav class="elementos-responsivos">
+                {% if user.is_authenticated %}
+                    <div class="elementos-superiores">
+                        <a href="{% url 'lista_tareas' %}" class="a-logo"><img src="{% static 'tareas/img/logo.png' %}" alt="logo hamel"></a>
+                        <a href="{% url 'crear_tarea' %}" class="crear-tarea">Crear Tarea</a>                      
+                    </div>
                     <form class="buscador" method="GET">
                         <input type="search" name="buscador" placeholder="Buscar por titulo, completas e incompletas...">
                         <button type="submit" class="btn-buscar">
                             <img src="{% static 'tareas/img/btn-buscador.png' %}" alt="boton buscar">
-                            <!-- <i class="bi bi-search"></i> -->
                         </button>
                     </form>
-                </nav>
-            </nav>
-            <nav class="elementos-responsivos">
-                <div class="elementos-superiores">
-                    <a href="{% url 'lista_tareas' %}" class="a-logo"><img src="{% static 'tareas/img/logo.png' %}" alt="logo hamel"></a>
-                    <a href="{% url 'crear_tarea' %}" class="crear-tarea">Crear Tarea</a>                      
-                </div>
-                <form class="buscador" method="GET">
-                    <input type="search" name="buscador" placeholder="Buscar por titulo, completas e incompletas...">
-                    <button type="submit">
-                        <img src="{% static 'tareas/img/btn-buscador.png' %}" alt="boton buscar">
-                    </button>
-                </form>
+                    {% else %}
+                    <div class="contenedor-logo-inicio">
+                        <a href=""><img src="{% static 'tareas/img/logo.png' %}" class="logo-inicio" alt="logo hamel"></a>                        
+                    </div>
+                {% endif %}
             </nav>
         </header>
+        {% endblock %}
         <main>
             <div class="contenido-principal">
                 {% block contenido %}

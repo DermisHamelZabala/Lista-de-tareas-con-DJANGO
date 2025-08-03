@@ -2,13 +2,15 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import TareaForm
 from .models import Tarea
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+@login_required
 def listar_crear_tareas(request):
     busqueda = request.GET.get('buscador')
 
-    tareas = Tarea.objects.all() # recupera todos los registro almacenados en la base de datos
+    tareas = Tarea.objects.filter(usuario=request.user) # recupera todos los registro almacenados en la base de datos
 
     if busqueda:
         tareas = Tarea.objects.filter(
@@ -26,6 +28,8 @@ def crear_tarea(request):
     if request.method == 'POST':
         formulario = TareaForm(request.POST)
         if formulario.is_valid():
+            formulario = formulario.save(commit=False)
+            formulario.usuario = request.user
             formulario.save()
             return redirect('lista_tareas')
     else:
@@ -56,9 +60,9 @@ def actualizar_tareas(request, pk):
 
     return render(request, 'tareas/crear_tarea.html', context)
 
-
+@login_required
 def borrar_tarea(request, pk):
-    tarea_eliminar = get_object_or_404(Tarea, pk=pk)
+    tarea_eliminar = get_object_or_404(Tarea, pk=pk, usuario=request.user)
 
     if request.method == 'POST':
         tarea_eliminar.delete()

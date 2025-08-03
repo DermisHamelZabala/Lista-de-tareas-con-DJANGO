@@ -1,0 +1,17 @@
+{% extends 'tareas/base.html' %}
+
+{% block titulo %}Inicio de sesion{% endblock %}
+
+{% block contenido %}
+    <div class="formulario-agregar-tarea registro">
+        <h2>Registro</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn-agregar">Iniciar Sesion</button>
+        </form>
+        <p style="text-align: center; margin-top: 10px;">
+            ¿No tienes una cuenta? <a style="text-decoration: none; color: #4D88FF;" href="{% url 'registro' %}">Regístrate aquí</a>.
+        </p>
+    </div>
+{% endblock %}
