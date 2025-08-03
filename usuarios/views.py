@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from .forms import FormularioInicioSesion
+from django.contrib import messages
 
 # Create your views here.
 
@@ -17,6 +18,8 @@ def registro_usuario(request):
             login(request, nuevo_formulario)
             # redirigimos al usuario 
             return redirect('lista_tareas')
+        else:
+            messages.error(request, f'Error al crear el usuario: {formulario.error_messages}')
     
     else: # si la peticion no es POST
         formulario = FormularioInicioSesion()

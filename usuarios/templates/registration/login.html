@@ -3,8 +3,8 @@
 {% block titulo %}Inicio de sesion{% endblock %}
 
 {% block contenido %}
-    <div class="formulario-agregar-tarea registro">
-        <h2>Registro</h2>
+    <div class="formulario-agregar-tarea login">
+        <h2>Inicio de sesion</h2>
         <form method="POST">
             {% csrf_token %}
             {{ form.as_p }}

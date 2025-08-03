@@ -214,13 +214,26 @@ form button:hover{
     background-color: var(--color-primario);
 }
 
-.registro{
+.registro,
+.login{
     width: 30%;
 }
 
 .registro span,
 .registro ul{
     display: none;
+}
+
+/* mensaje error */
+.nonfield,
+.sms-registro{
+    display: block;
+    color: #E35F5F;
+    list-style: none;
+    padding: 10px;
+    background-color: #121212;
+    border: 2px solid #E35F5F;
+    border-radius: 8px;
 }
 
 /* estilos de las tareas */
@@ -417,7 +430,8 @@ footer p{
         line-height: 1.4;
     }
 
-    .registro{
+    .registro,
+    .login{
         width: 50%;
     }
 }
@@ -441,7 +455,8 @@ footer p{
         width: 70%;
     }
 
-    .registro{
+    .registro,
+    .login{
         width: 70%;
     }
 }
