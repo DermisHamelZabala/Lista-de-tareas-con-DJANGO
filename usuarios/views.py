@@ -19,8 +19,10 @@ def registro_usuario(request):
             # redirigimos al usuario 
             return redirect('lista_tareas')
         else:
-            messages.error(request, f'Error al crear el usuario: {formulario.error_messages}')
-    
+            for campo, errores in formulario.errors.items():
+                for error in errores:
+                    messages.error(request, f"{campo}: {error}")
+                        
     else: # si la peticion no es POST
         formulario = FormularioInicioSesion()
     
